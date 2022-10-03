@@ -5,6 +5,7 @@ const SelectorLabel = styled.label.attrs({className: 'visually-hidden'})``;
 
 const SelectorSelect = styled.select`
   margin-right: 10px;
+  padding: 0 10px;
 
   border: transparent;
   border-radius: 10px;
