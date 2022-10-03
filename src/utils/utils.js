@@ -1,4 +1,13 @@
-import { CurrencyOptionFormat, LOCATION_NUMBER_FORMAT, NumberField, SortingState, StatusGeneral, TypeOfValue } from "./const";
+import {
+  CurrencyOptionFormat,
+  HeadNameConnectServerData,
+  LOCATION_NUMBER_FORMAT,
+  NumberField,
+  SortingState,
+  StatusGeneral,
+  TypeGeneral,
+  TypeOfValue
+} from "./const";
 
 export const isGreen = (status) => status === StatusGeneral.green;
 export const isYellow = (status) => status === StatusGeneral.yellow;
@@ -63,22 +72,54 @@ const sortFunctionWithNameDecrease = (sortParameter) =>(a, b) => {
 const sortFunctionWithNumberIncrease = (sortParameter) => (a, b) => a[sortParameter] - b[sortParameter];
 const sortFunctionWithNumberDecrease = (sortParameter) => (a, b) => b[sortParameter] - a[sortParameter];
 
-export const sortData = (data, typeValue, typeSort, sortParameter ) => {
+const sortInternalData = (data, typeValue, typeSort, sortParameter ) => {
   if(typeValue === TypeOfValue.name && typeSort === SortingState.increase) {
-    return data.sort(sortFunctionWithNameIncrease(sortParameter));
+    return data.slice().sort(sortFunctionWithNameIncrease(sortParameter));
   } else if (typeValue === TypeOfValue.name && typeSort === SortingState.decrease) {
-    return data.sort(sortFunctionWithNameDecrease(sortParameter));
+    return data.slice().sort(sortFunctionWithNameDecrease(sortParameter));
   } else if (typeValue === TypeOfValue.value && typeSort === SortingState.increase) {
-    return data.sort(sortFunctionWithNumberIncrease(sortParameter));
+    return data.slice().sort(sortFunctionWithNumberIncrease(sortParameter));
   } else if (typeValue === TypeOfValue.value && typeSort === SortingState.decrease) {
-    return data.sort(sortFunctionWithNumberDecrease(sortParameter));
+    return data.slice().sort(sortFunctionWithNumberDecrease(sortParameter));
   } else {
     return data;
   }
 }
 
-export const checkFieldType = (value) => {
+const checkFieldType = (value) => {
   const isNumber = NumberField.some((line) => line === value);
 
   return isNumber ? TypeOfValue.value : TypeOfValue.name;
 };
+
+export const sortData = (data, activeTabStatus) => {
+
+  if(!activeTabStatus) {
+    return data;
+  }
+
+  const tabName = activeTabStatus.headName;
+  const sortingOrder = activeTabStatus.sortState;
+  const serverName = HeadNameConnectServerData[tabName];
+  const typeValue = checkFieldType(serverName);
+
+  return sortInternalData(data, typeValue, sortingOrder, serverName);
+}
+
+const filterProjectData = (data, valueInfo) => {
+  if(valueInfo.project !== StatusGeneral.all) {
+    return data.filter((line) => line.status === valueInfo.project);
+  } else {
+    return data;
+  }
+}
+
+const filterTokenData = (data, valueInfo) => {
+  if(valueInfo.token !== TypeGeneral.all) {
+    return data.filter((line) => line.type === valueInfo.token);
+  } else {
+    return data;
+  }
+}
+
+export const filterData = (data, valueInfo) => filterProjectData(filterTokenData(data, valueInfo), valueInfo);

@@ -1,16 +1,17 @@
 import ButtonTable from "components/button/button";
-import { useSortData } from "hooks/useSortData";
-import { mockData } from "mock/mock-data";
 import { formatConditionString, formatCurrencyValue } from "utils/utils";
+import { useSelector } from 'react-redux';
+import * as selectorTable from "store/data-table/data-table-selector";
 import * as S from "./table-body-style";
 
+
 function TableBody() {
-  const resultData = useSortData();
+  const currentData = useSelector(selectorTable.getProcessedData);
 
   return(
     <tbody>
       {
-        resultData.map((line) => (
+        currentData.map((line) => (
           <S.BodyRow color={line.status} key={line.name}>
             <S.TableDataProject color={line.status}>
               {line.name}
