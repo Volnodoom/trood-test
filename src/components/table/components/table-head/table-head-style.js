@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
-const HeadTableStyle = styled.thead`
-  color: rgba(0, 0, 0, 0.3);
-`;
-
+// adding extra increase right padding on 30px
 const HeadTableData = styled.th`
-  padding-right: 60px;
+  padding-right: ${(props) => props.extra ? '80px' : '50px'}
 `;
 
-const HeadTableDataExtra = styled.th`
-  padding-right: 90px;
+const HeadTableText = styled.p`
+  padding: 0;
+  padding: 0 10px 0 5px;
+  margin: 0;
+
+  display: inline;
 `;
 
 export {
-  HeadTableStyle,
   HeadTableData,
-  HeadTableDataExtra,
+  HeadTableText,
 }

@@ -16,13 +16,7 @@ const SelectorSelect = styled.select`
   ${standardFont}
 `;
 
-const SelectorText = styled.p`
-  padding: 0;
-  margin: 0;
-`;
-
 export {
   SelectorLabel,
   SelectorSelect,
-  SelectorText,
 }

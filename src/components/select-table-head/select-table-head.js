@@ -1,17 +1,20 @@
+import ButtonTable from "components/button/button";
+import { useSortOnHead } from "hooks/useSortOnHead";
 import { HeadWithSelector, SelectorNameConst, StatusGeneral, TypeGeneral } from "utils/const.js";
+import { setSortingUI } from "utils/utils";
 import SelectorLabe from "./components/selector-label";
 import SelectorSelect from "./components/selector-select";
-import SelectorText from "./components/selector-text";
 import * as S from "./select-table-head-style";
 
 
 function SelectTableHead ({labelName}) {
+  const [sortTabStatus, handleSortTabClick] = useSortOnHead(labelName);
   let optionList;
 
-  const isStatus = labelName === HeadWithSelector.project;
-  const isType = labelName === HeadWithSelector.token;
-
   const makeSelectorName = () => {
+    const isStatus = labelName === HeadWithSelector.project;
+    const isType = labelName === HeadWithSelector.token;
+
     if(isStatus) {
       optionList = Object.values(StatusGeneral);
       return SelectorNameConst.status;
@@ -33,7 +36,9 @@ function SelectTableHead ({labelName}) {
           )
         }
       </SelectorSelect>
-      <SelectorText>{labelName}</SelectorText>
+      <ButtonTable head onClick={handleSortTabClick}>{labelName}</ButtonTable>
+      <ButtonTable head extraWidth onClick={handleSortTabClick}>{setSortingUI(sortTabStatus)}</ButtonTable>
+
     </S.SelectHeadDiv>
   )
 }

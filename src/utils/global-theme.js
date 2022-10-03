@@ -5,6 +5,7 @@ export const globalTheme = {
     red: '#f26755',
     white: 'white',
     grey: '#a0a2a7',
+    blackPale: 'rgba(0, 0, 0, 0.3)',
     purple: '#ba1bb9',
     purpleShade30: '#821382',
     greenBackground: '#f1fef5',

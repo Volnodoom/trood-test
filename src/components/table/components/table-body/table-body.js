@@ -1,13 +1,16 @@
 import ButtonTable from "components/button/button";
+import { useSortData } from "hooks/useSortData";
 import { mockData } from "mock/mock-data";
 import { formatConditionString, formatCurrencyValue } from "utils/utils";
 import * as S from "./table-body-style";
 
 function TableBody() {
+  const resultData = useSortData();
+
   return(
     <tbody>
       {
-        mockData.map((line) => (
+        resultData.map((line) => (
           <S.BodyRow color={line.status} key={line.name}>
             <S.TableDataProject color={line.status}>
               {line.name}

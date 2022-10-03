@@ -1,18 +1,19 @@
 import SelectTableHead from "components/select-table-head/select-table-head";
 import { HeadWithoutSelector, HeadWithSelector } from "utils/const";
+import TableHeadData from "./table-head-data";
 import * as S from "./table-head-style";
 
 function TableHead () {
   return (
-    <S.HeadTableStyle>
+    <thead>
       <tr>
         {
           Object.values(HeadWithSelector).map((line) => (
             line === HeadWithSelector.project
             ?
-              <S.HeadTableDataExtra key={`head-key-${line}`}>
+              <S.HeadTableData extra key={`head-key-${line}`}>
                 <SelectTableHead labelName={line} />
-              </S.HeadTableDataExtra>
+              </S.HeadTableData>
             :
               <S.HeadTableData key={`head-key-${line}`}>
                 <SelectTableHead labelName={line} />
@@ -21,13 +22,11 @@ function TableHead () {
         }
         {
           HeadWithoutSelector.map((line) => (
-            <S.HeadTableData key={`head-simpl-${line}`}>
-              {line}
-            </S.HeadTableData>
+            <TableHeadData key={`head-simpl-${line}`}>{line}</TableHeadData>
           ))
         }
       </tr>
-  </S.HeadTableStyle>
+  </thead>
   )
 }
 

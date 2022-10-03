@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { standardFont } from "utils/const-style";
 
-const Button = styled.button`
+const BodyButton = styled.button`
   padding: 5px 10px;
   margin-right: 20px;
   border: solid 4px ${(props) => props.theme.color.purple};
@@ -24,4 +24,21 @@ const Button = styled.button`
   }
 `;
 
-export { Button };
+const HeadButton = styled.button`
+  padding: 0;
+  margin: 0;
+
+  width: ${(props) => props.extraWidth ? '20px' : 'auto'};
+  border: none;
+
+  background-color: transparent;
+  color: ${(props) => props.theme.color.blackPale};
+
+  ${standardFont};
+`;
+
+export {
+  BodyButton,
+  HeadButton,
+};
+
