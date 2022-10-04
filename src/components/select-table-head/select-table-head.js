@@ -1,16 +1,13 @@
 import { useDispatch } from 'react-redux';
-import ButtonTable from "components/button/button";
-import { useSortOnHead } from "hooks/useSortOnHead";
 import { HeadWithSelector, SelectorNameConst, StatusGeneral, TypeGeneral } from "utils/const.js";
-import { setSortingUI } from "utils/utils";
 import SelectorLabe from "./components/selector-label";
 import SelectorSelect from "./components/selector-select";
 import * as S from "./select-table-head-style";
 import { setFilter } from 'store/data-table/data-table';
+import HeadLabel from 'components/head-label/head-label';
 
 
 function SelectTableHead ({labelName}) {
-  const [sortTabStatus, handleSortTabClick] = useSortOnHead(labelName);
   const dispatch = useDispatch();
 
   let optionList;
@@ -62,8 +59,7 @@ function SelectTableHead ({labelName}) {
           )
         }
       </SelectorSelect>
-      <ButtonTable head onClick={handleSortTabClick}>{labelName}</ButtonTable>
-      <ButtonTable head extraWidth onClick={handleSortTabClick}>{setSortingUI(sortTabStatus)}</ButtonTable>
+      <HeadLabel labelName={labelName}/>
 
     </S.SelectHeadDiv>
   )

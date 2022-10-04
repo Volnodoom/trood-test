@@ -6,7 +6,7 @@ import * as S from "./table-head-style";
 function TableHead () {
   return (
     <thead>
-      <tr>
+      <S.HeadRaw>
         {
           Object.values(HeadWithSelector).map((line) => (
             line === HeadWithSelector.project
@@ -25,7 +25,7 @@ function TableHead () {
             <TableHeadData key={`head-simpl-${line}`}>{line}</TableHeadData>
           ))
         }
-      </tr>
+      </S.HeadRaw>
   </thead>
   )
 }

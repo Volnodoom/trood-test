@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { standardFont } from "utils/const-style";
 
-const BodyButton = styled.button`
+const BodyButton = styled.button.attrs((props) => ({
+  type: 'button',
+}))`
   padding: 5px 10px;
   margin-right: 20px;
   border: solid 4px ${(props) => props.theme.color.purple};
   border-radius: 10px;
 
+  cursor: pointer;
+
   background-color: transparent;
   color: ${(props) => props.theme.color.purple};
+
 
   ${standardFont}
 
@@ -24,12 +29,16 @@ const BodyButton = styled.button`
   }
 `;
 
-const HeadButton = styled.button`
+const HeadButton = styled.button.attrs((props) => ({
+  type: 'button',
+}))`
   padding: 0;
   margin: 0;
 
   width: ${(props) => props.extraWidth ? '20px' : 'auto'};
   border: none;
+
+  cursor: pointer;
 
   background-color: transparent;
   color: ${(props) => props.theme.color.blackPale};

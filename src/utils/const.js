@@ -80,3 +80,8 @@ export const TypeOfValue = {
   value: 'VALUE',
   name: 'NAME',
 }
+
+export const AppRoutes = {
+  Main: '/',
+  Project: (id = ':id') => `/project/${id}`,
+}

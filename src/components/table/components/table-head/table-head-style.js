@@ -13,7 +13,12 @@ const HeadTableText = styled.p`
   display: inline;
 `;
 
+const HeadRaw = styled.tr`
+  vertical-align: baseline;
+`;
+
 export {
   HeadTableData,
   HeadTableText,
+  HeadRaw,
 }

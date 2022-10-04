@@ -1,7 +1,7 @@
 import * as S from "./body-button-style";
 
-function ButtonTable({children, head, ...props}) {
-  if(head) {
+function ButtonTable({children, ...props}) {
+  if(props.head) {
     return <S.HeadButton {...props}>{children}</S.HeadButton>
   }
 
