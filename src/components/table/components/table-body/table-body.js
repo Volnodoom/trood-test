@@ -15,7 +15,7 @@ function TableBody() {
       {
         currentData.map((line) => (
           <S.BodyRow color={line.status} key={line.name}>
-            <TableBodyData project color={line.status} linId={line}>{line.name}</TableBodyData>
+            <TableBodyData project color={line.status} linId={line.id}>{line.name}</TableBodyData>
 
             <TableBodyData linId={line.id}>{line.type}</TableBodyData>
 
